@@ -1,0 +1,13 @@
+<h2>Urls:</h2>
+<% @urls.each_with_index  do |url, index| %>
+  <div class="url">
+      <p>
+      <%=index + 1%>. Url: <%=url.long %> Short:  http://localhost/3000/<%= url.short %> Visits: <%=url.visits %>
+      <%= link_to 'Show', url %> |
+      <%= link_to 'Edit', edit_url_path(url) %> |
+      <%= link_to 'Destroy', url, method: :delete, data: {confirm: 'Are you sure?' } %>
+      </p>
+  </div>
+<% end %>
+
+
