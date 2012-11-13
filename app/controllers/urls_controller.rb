@@ -57,9 +57,11 @@ class UrlsController < ApplicationController
   def visit
 #   @url = Url.find_by_short(params[:short])
     @url = Url.where(:short => params[:short]).first
-    @url.update_attributes(:visits => (@url.visits + 1))
-    #logger.info @url.long
-    redirect_to @url.long
+    unless @url.nil?
+      @url.update_attributes(:visits => (@url.visits + 1))
+      #logger.info @url.long
+      redirect_to @url.long
+    end
   end
 
 
