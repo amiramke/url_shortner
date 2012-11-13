@@ -11,12 +11,12 @@ class UrlsController < ApplicationController
   end
 
   def create
-    @url = Url.new( { :long => params[:url][:long], :short => (('a'..'z').to_a + ('A'..'Z').to_a + (1..9).to_a).shuffle[0..2].join, :visits => 0 } )
+    @url = Url.new( { :long => params[:url][:long], :short => params[:url][:short] || (('a'..'z').to_a + ('A'..'Z').to_a + (1..9).to_a).shuffle[0..2].join, :visits => 0 } )
     respond_to do |format|
       if @url.save
         format.html { redirect_to @url, notice: 'a url has been successfully created' }
       else
-        flash.now[:notice] = "Could not create the Url"
+        flash.now[:notice] = "could not create the Url"
         format.html { render action: "new", notice: 'could not add the entry'}
 
       end
@@ -57,6 +57,7 @@ class UrlsController < ApplicationController
   def visit
 #   @url = Url.find_by_short(params[:short])
     @url = Url.where(:short => params[:short]).first
+    @url.update_attributes(:visits => (@url.visits + 1))
     #logger.info @url.long
     redirect_to @url.long
   end

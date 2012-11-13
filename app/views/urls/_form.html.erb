@@ -1,7 +1,13 @@
 <%= form_for(@url) do |f| %>
+
 <div class = "field" >
-  <%= f.label :url %><br />
-  <%= f.text_field :long, class: 'span1' %>
+  <%= f.label :original_url %><br />
+  <%= f.text_field :long, class: 'text_field' %>
+</div>
+
+<div class = "field" >
+  <%= f.label :short_url %><br />
+  <%= f.text_field :short, class: 'text_field' %>
 </div>
 
 <div class = "actions">

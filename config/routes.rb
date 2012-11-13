@@ -4,6 +4,8 @@ UrlShortner::Application.routes.draw do
   #get "urls/create"
 
   resources :urls
+  resources :users
+
   root :to => 'urls#index'
   get "/:short" => "urls#visit"
 
