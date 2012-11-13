@@ -1,8 +1,14 @@
-<h2>Urls:</h2>
+<% if @urls.empty?%>
+<%= "No Urls."%>
+<% else %>
+<%= "Here are your Urls:"%>
+<% end %>
+
+
 <% @urls.each_with_index  do |url, index| %>
   <div class="url">
       <p>
-      <%=index + 1%>. Url: <%=url.long %> Short:  http://localhost/3000/<%= url.short %> Visits: <%=url.visits %>
+      <%=index + 1%>. Url: <%=url.long %> Short:  http://localhost:3000/<%= url.short %> Visits: <%=url.visits %>
       <%= link_to 'Show', url %> |
       <%= link_to 'Edit', edit_url_path(url) %> |
       <%= link_to 'Destroy', url, method: :delete, data: {confirm: 'Are you sure?' } %>
@@ -10,4 +16,7 @@
   </div>
 <% end %>
 
+<br>
+<br>
 
+Click <%= link_to 'Here', new_url_path %> to add a new Url

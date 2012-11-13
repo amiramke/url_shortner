@@ -1,10 +1,12 @@
 UrlShortner::Application.routes.draw do
-  get "urls/new"
+  #get "urls/new"
 
-  get "urls/create"
+  #get "urls/create"
 
   resources :urls
   root :to => 'urls#index'
+  get "/:short" => "urls#visit"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
