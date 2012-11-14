@@ -1,5 +1,7 @@
 UrlShortner::Application.routes.draw do
 
+  devise_for :users
+
   #get "urls/new"
 
   #get "urls/create"
@@ -8,21 +10,9 @@ UrlShortner::Application.routes.draw do
   resources :users
   #resources :sessions
 
-  root :to => 'sessions#login'
+  root :to => 'urls#index'
   get "/:short" => "urls#visit"
   
-  match "login_attempt", :to => "sessions#login_attempt"
-  match "signup", :to => "users#new"
-  match "login", :to => "sessions#login"
-  match "logout", :to => "sessions#logout"
-  match "home", :to => "sessions#home"
-  match "profile", :to => "sessions#profile"
-  match "setting", :to => "sessions#setting"
-
-
-
-
-
 
 
 
