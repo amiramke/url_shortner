@@ -4,7 +4,7 @@ class CreateUrls < ActiveRecord::Migration
       t.string :long
       t.string :short
       t.integer :visits
-
+      t.references :user
       t.timestamps
     end
   end

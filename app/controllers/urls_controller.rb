@@ -1,6 +1,10 @@
 class UrlsController < ApplicationController
+
+  
+before_filter :authenticate_user!
+  
   def index
-    @urls = Url.all
+    @urls = Url.where(:user_id => current_user.id)
   end
 
   def new
@@ -11,7 +15,10 @@ class UrlsController < ApplicationController
   end
 
   def create
-    @url = Url.new( { :long => params[:url][:long], :short => params[:url][:short] || (('a'..'z').to_a + ('A'..'Z').to_a + (1..9).to_a).shuffle[0..2].join, :visits => 0 } )
+    logger.info "----------------------------"
+    logger.info "user_id: #{current_user.id}"
+    logger.info "----------------------------"
+    @url = Url.new( { :long => params[:url][:long], :short => params[:url][:short] || (('a'..'z').to_a + ('A'..'Z').to_a + (1..9).to_a).shuffle[0..2].join, :visits => 0, :user => current_user } )
     respond_to do |format|
       if @url.save
         format.html { redirect_to @url, notice: 'a url has been successfully created' }

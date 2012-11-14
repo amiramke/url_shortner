@@ -8,12 +8,28 @@
 </head>
 <body>
 
+  <% unless current_user.nil? %>
+    <table>
+      <tr>
+        <td>
+          <%= current_user.email %>
+          [<%= current_user.sign_in_count %>]
+        </td>
+        <td>
+          <%= link_to 'logout', destroy_user_session_path, :method => :delete %>
+        </td>
+      </tr>
+    </table>
+  <% end %> 
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
 <%= yield %>
 
 </body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
 
 </html>
